@@ -30,7 +30,7 @@ function Hero() {
            
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 pt-10">
            <Catalog />
           </div> 
 
