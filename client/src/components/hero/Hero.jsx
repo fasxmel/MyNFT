@@ -11,7 +11,7 @@ function Hero() {
           <div className="lg:flex-initial justify-start items-start">
 
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Create and Sell Unique NFTs
+            Create Buy and Sell Unique NFTs
             
             </h1>
 
