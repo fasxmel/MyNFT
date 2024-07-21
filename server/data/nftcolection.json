@@ -1,0 +1,44 @@
+{
+    "9d8fdfc4-08ee-45c9-ada4-197025715280": {
+        "title": "Krasimir",
+        "discription": "Krasimir@abv.bg",
+        "prize": "2222",
+        "imageUrl": "/galery.jpg",
+        "_id": "9d8fdfc4-08ee-45c9-ada4-197025715280"
+    },
+    "e0890c40-030b-4612-9b49-b791b7f5adf8": {
+        "title": "galery",
+        "discription": "punk galery",
+        "prize": "69$",
+        "imageUrl": "/galery.jpg",
+        "_id": "e0890c40-030b-4612-9b49-b791b7f5adf8"
+    },
+    "c29d48c8-84a2-4852-8828-f97afa9d7e74": {
+        "title": "mask",
+        "discription": "mask on",
+        "prize": "1000$",
+        "imageUrl": "/mask.jpg",
+        "_id": "c29d48c8-84a2-4852-8828-f97afa9d7e74"
+    },
+    "87a625c7-8835-4459-92ea-439a7480fb4c": {
+        "title": "pilot",
+        "discription": "pilot tinkig",
+        "prize": "59$",
+        "imageUrl": "/pilot.jpg",
+        "_id": "87a625c7-8835-4459-92ea-439a7480fb4c"
+    },
+    "ba4b71ce-e6db-483b-8dc1-3a0cebeda410": {
+        "title": "punk",
+        "discription": "punk on",
+        "prize": "456$",
+        "imageUrl": "/punk.jpg",
+        "_id": "ba4b71ce-e6db-483b-8dc1-3a0cebeda410"
+    },
+    "3d07b41a-0000-4488-a763-35200aee84ac": {
+        "title": "stevejobs",
+        "discription": "Steve Jobs live",
+        "prize": "3050$",
+        "imageUrl": "/stevejobs.jpg",
+        "_id": "3d07b41a-0000-4488-a763-35200aee84ac"
+    }
+}

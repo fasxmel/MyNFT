@@ -12,6 +12,7 @@ function Hero() {
 
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Create and Sell Unique NFTs
+            
             </h1>
 
             <p className="mt-2 text-lg leading-8 text-gray-800">
