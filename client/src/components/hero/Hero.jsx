@@ -1,16 +1,28 @@
 import CardNFT from "../catalog/CardNFT";
-
+import { useEffect, useState } from "react";
+import nftApi from "../../api/nftAPI";
+import CustomSpinner from "../CustomSpinner";
 
 function Hero() {
+
+  const [nft, setNft] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const nfts = await nftApi.getAll();
+{/* TODO: add the last 4 created nft */}
+      setNft(nfts);
+    })();
+  } , []);
   
   return (
       <div className="relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-between py-4">
 
-        <div className="md:flex flex-row text-center  sm:flex-auto items-center justify-center mt-20 gap-8">
+        <div className="md:flex flex-row text-center  sm:flex-auto items-start justify-center mt-28 gap-8">
          
           <div className="lg:flex-initial justify-start items-start">
 
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mt-12">
             Create Buy and Sell Unique NFTs
             
             </h1>
@@ -34,9 +46,17 @@ function Hero() {
           
           </div>
            {/* TODO: add the last 4 created nft */}
-          <div className="md:flex-initial sm:flex-1">
-           <CardNFT />
-          </div>
+           <div className="flex flex-grow flex-row flex-wrap gap-8 justify-center mt-12">  
+         {nft.length > 0 
+              ? nft.map((nft) => (
+              <CardNFT key={nft._id} {...nft}/>
+              ))
+              : <div className="flex flex-1 items-center justify-center gap-8">
+                <h1 className="text-3xl font-bold">Loding...NFTs</h1>
+                <CustomSpinner />
+               </div>
+              }
+        </div>
 
         </div>
 
