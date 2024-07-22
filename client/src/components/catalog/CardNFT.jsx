@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function CardNFT({ 
   _id,
   title,
@@ -6,29 +8,36 @@ function CardNFT({
   imageUrl,
 }) {
   return (
-    <div className="bg-white">
-     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+   
+    <div class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
+     <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-xl h-80">
+      <img src={imageUrl} alt="picture" />
+     </div>
+     <div class="p-6 text-center">
+      <h4 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+        {title}
+      </h4>
+      <p
+        class="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
+        {discription}
+      </p>
+      <p
+        class="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
+        {prize}
+      </p>
+     </div>
+     <div class="flex justify-center p-6 pt-2 gap-7">
+      <Link to="/details"
+         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+         >
+        Details
+      </Link>
+      <Link to="/buy"
+         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+         >
+        Buy 
+      </Link>
       
-      <h2 className="">NFTs</h2>
-
-      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          <a key={_id} href={imageUrl} className="group">
-
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-              <img
-                alt="image"
-                src={imageUrl}
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
-            </div>
-
-            <h3 className="mt-4 text-sm text-gray-700">{title}</h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">{discription}</p>
-            <p className="mt-1 text-lg font-medium text-gray-900">{prize}</p>
-          </a>
-       
-      </div>
-
      </div>
     </div>
           
