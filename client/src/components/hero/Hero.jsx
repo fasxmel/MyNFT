@@ -5,14 +5,15 @@ import CustomSpinner from "../CustomSpinner";
 
 function Hero() {
 
-  const [nft, setNft] = useState([]);
+  const [nftLatest, setNftLatest] = useState([]);
 
   useEffect(() => {
     (async () => {
       const nfts = await nftApi.getAll();
-{/* TODO: add the last 4 created nft */}
-      setNft(nfts);
+
+      setNftLatest(nfts.reverse().slice(0, 4));
     })();
+
   } , []);
   
   return (
@@ -44,11 +45,11 @@ function Hero() {
             </div>
 
           
-          </div>
-           {/* TODO: add the last 4 created nft */}
+            </div>
+           
            <div className="flex flex-grow flex-row flex-wrap gap-8 justify-center mt-12">  
-         {nft.length > 0 
-              ? nft.map((nft) => (
+              {nftLatest.length > 0 
+              ? nftLatest.map((nft) => (
               <CardNFT key={nft._id} {...nft}/>
               ))
               : <div className="flex flex-1 items-center justify-center gap-8">
@@ -56,7 +57,7 @@ function Hero() {
                 <CustomSpinner />
                </div>
               }
-        </div>
+           </div>
 
         </div>
 
