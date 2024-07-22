@@ -9,5 +9,10 @@ const getAll = async() => {
   return data;
 };
 
+const getOneById = async(id) => {
+  const data = await request.get(`${baseURL}/${id}`);
+  return data;
+};
 
-export default { getAll }
+
+export default { getAll, getOneById }
