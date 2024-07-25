@@ -1,6 +1,8 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
+import { UserContext } from './context/userContext';
+import * as userApi from './api/userAPI'
 
 
 import Header from './components/header/Header';
@@ -16,10 +18,17 @@ import Details from './components/details/Details';
 
 
 function App() {
-  
+
+  const onLoginSubmit = async (data) => {
+  const result = userApi.login(data);
+
+  console.log(result);
+  }
+
   return (
-    <BrowserRouter>
+    <UserContext.Provider value={{onLoginSubmit}}>
     <div className="min-h-screen flex flex-col">
+     
       <Header/> 
       <Routes>
         <Route path='/' element={<Hero />} />
@@ -32,8 +41,9 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/logout' element={<Logout />} />
       </Routes>
+     
     </div>
-    </BrowserRouter>
+    </UserContext.Provider>
   )
 }
 

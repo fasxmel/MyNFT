@@ -20,11 +20,11 @@ function CardNFT({
         {title}
       </h4>
       <p
-        clasName="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
+        className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
         {discription}
       </p>
       <p
-        clasName="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
+        className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
         {prize}
       </p>
      </div>

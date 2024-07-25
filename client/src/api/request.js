@@ -1,6 +1,9 @@
 async function request(method, url, data) {
     const options = {};
 
+    if (method !== 'GET') {
+        options.method = method;
+
     if (data) {
         options.headers = {
             'Content-Type': 'application/json',
@@ -8,7 +11,7 @@ async function request(method, url, data) {
 
         options.body = JSON.stringify(data);
     }
-    
+}
 
    const response = await fetch(url, options);
 
