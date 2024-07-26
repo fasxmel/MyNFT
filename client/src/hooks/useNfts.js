@@ -19,3 +19,19 @@ export const useGetAllNfts = () => {
     return [nft, setNft]
          
 }
+
+export const useGetOneNftById = (nftId) => {
+  const [details, setDetails] = useState({});
+
+    useEffect(() => {
+        (async () => {
+          const oneNft = await nftAPI.getOneById(nftId);
+    
+          setDetails(oneNft);
+        })();
+        // we update the nftsId
+      } , [nftId]);
+
+    return [details, setDetails]
+         
+}

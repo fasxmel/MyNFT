@@ -1,31 +1,21 @@
-
-import nftAPI from '../../api/nftAPI';
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import commentsAPI from '../../api/commentsAPI';
+import { useGetOneNftById } from '../../hooks/useNfts';
 
 
 function Details() {
-  const [details, setDetails] = useState({});
+  const { nftId } = useParams();
+  const [details, setDetails] = useGetOneNftById(nftId);
   const [username, setUsername] = useState('');
   const [comment, setComment] = useState('');
-  const { nftId } = useParams();
-
-  useEffect(() => {
-    (async () => {
-    const details = await nftAPI.getOneById(nftId);
-
-      
-      setDetails(details);
-    })();
-  }, []);
 
 
   const commentOnSubmitHandler = async (e) => {
     e.preventDefault();
-   const result = await commentsAPI.create(nftId, username, comment);
-
-
+   
+    const newComment = await commentsAPI.create(nftId, username, comment);
+    // we need to refactor this
     console.log(username);
     console.log(comment);
     console.log('comment submitted');
