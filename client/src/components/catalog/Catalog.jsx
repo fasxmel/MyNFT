@@ -1,19 +1,11 @@
 
-import nftAPI from "../../api/nftAPI";
-import { useEffect, useState } from "react";
+import { useGetAllNfts } from "../../hooks/useNfts";
 import CustomSpinner from "../CustomSpinner";
 import CardNFT from "./CardNFT";
 
 function Catalog() {
-const [nft, setNft] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      const nfts = await nftAPI.getAll();
-
-      setNft(nfts);
-    })();
-  } , []);
+const [nft, setNft] = useGetAllNfts();
 
     return (
 
