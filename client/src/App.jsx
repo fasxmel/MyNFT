@@ -20,7 +20,9 @@ import Details from './components/details/Details';
 function App() {
 
   const onLoginSubmit = async (data) => {
-  const result = userApi.login(data);
+  const result = await userApi.login(data);
+
+
 
   console.log(result);
   }
