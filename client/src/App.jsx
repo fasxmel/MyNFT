@@ -1,5 +1,6 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import { UserContext } from './context/userContext';
 import * as userApi from './api/userAPI'
@@ -18,13 +19,19 @@ import Details from './components/details/Details';
 
 
 function App() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({});
 
+  
   const onLoginSubmit = async (data) => {
-  const result = await userApi.login(data);
-
-
-
-  console.log(result);
+    try {
+      const result = await userApi.login(data);
+      setUser(result);
+      navigate('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+  
   }
 
   return (
