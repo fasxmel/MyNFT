@@ -22,20 +22,39 @@ function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
 
-  
+
   const onLoginSubmit = async (data) => {
     try {
       const result = await userApi.login(data);
-      setUser(result);
+      // is it needed? or can we do it distructured the user object?
+      changeUserState(result);
+      console.log(result);
       navigate('/');
     } catch (error) {
       console.log(error.message);
     }
   
   }
+  
+  // control user state with context and setUser function
+  const changeUserState = (state) => {
+    setUser(state); 
+  }
+
+
+  const contextData = {
+    email: user.email,
+    accsessToken: user.accessToken,
+    isAuthticated: !!user.email,
+    onLoginSubmit,
+    changeUserState
+  }
+
+
+  
 
   return (
-    <UserContext.Provider value={{onLoginSubmit}}>
+    <UserContext.Provider value={{...contextData}}>
     <div className="min-h-screen flex flex-col">
      
       <Header/> 
