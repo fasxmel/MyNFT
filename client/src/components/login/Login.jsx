@@ -1,33 +1,40 @@
-import { useContext } from "react";
-import { UserContext } from "../../context/userContext";
 import { useForm } from "../../hooks/useFormF";
+import { useLogin } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 
-const loginFormKeys = {
-  Email: "email",
-  Password: "password",
-}
+
 
 function Login() {
+   const login = useLogin();
+   const navigate = useNavigate();
+   const { values, changeHandler, submitHandler} = useForm({
+      email: '',
+      password: '',
+   }, async ({email, password}) => {
+    try {
+      await login(email, password)
+      navigate('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+    
+   }
   
-   const { onLoginSubmit } = useContext(UserContext);
-   const { values, changeHandler, onSubmit } = useForm({
-      [loginFormKeys.Email]: '',
-      [loginFormKeys.Password]: '',
-   } , onLoginSubmit );
+  );
 
   return (
     <div className ="relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-between py-4">
    
-     <form method="POST" id="login"  onSubmit={onSubmit} className="flex flex-col items-center justify-center">
+     <form id="login" onSubmit={submitHandler} className="flex flex-col items-center justify-center">
 
       <label htmlFor="email">Email:</label>
       <input 
       id="email" 
       type="email" 
-      name={loginFormKeys.Email} 
+      name="email"
       placeholder="email"
-      value={values[loginFormKeys.Email]} 
+      value={values.email} 
       onChange={changeHandler}
       />
 
@@ -35,9 +42,9 @@ function Login() {
       <input 
       id="password" 
       type="password" 
-      name={loginFormKeys.Password} 
+      name="password"
       placeholder="password" 
-      value={values[loginFormKeys.Password]}
+      value={values.password}
       onChange={changeHandler}
       />
 

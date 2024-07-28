@@ -19,6 +19,7 @@ import Details from './components/details/Details';
 
 
 function App() {
+  // TODO: remove from app component
   const navigate = useNavigate();
   const [user, setUser] = useState({});
 
@@ -28,7 +29,6 @@ function App() {
       const result = await userApi.login(data);
       // is it needed? or can we do it distructured the user object?
       changeUserState(result);
-      console.log(result);
       navigate('/');
     } catch (error) {
       console.log(error.message);
@@ -37,12 +37,14 @@ function App() {
   }
   
   // control user state with context and setUser function
+  // also we cant validate data here
   const changeUserState = (state) => {
     setUser(state); 
   }
 
 
   const contextData = {
+    userId: user._id,
     email: user.email,
     accsessToken: user.accessToken,
     isAuthticated: !!user.email,
