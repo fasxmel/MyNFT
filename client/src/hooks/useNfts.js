@@ -35,3 +35,9 @@ export const useGetOneNftById = (nftId) => {
     return [details, setDetails]
          
 }
+
+export const useCreateNft = () => {
+  const nftCreateHandler = (nftData) => nftAPI.create(nftData);
+  return nftCreateHandler;
+         
+}
