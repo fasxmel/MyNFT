@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../context/userContext'
 
 function Header() {
+  const { isAuthticated, email} = useContext(UserContext);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -22,9 +24,14 @@ function Header() {
             </Link>
           </div>
 
-           <div className="md:flex-1">
-           <span>email@example.com</span>
-           </div>
+          
+           {isAuthticated && 
+           (
+            <div className="md:flex-1">
+            <span>{email}</span>
+            </div>
+          )}
+           
            
           <div className="flex lg:hidden">
             <button
@@ -54,39 +61,53 @@ function Header() {
               className="text-sm font-semibold leading-6 text-gray-900">
                 Pricing
               </Link>
-              <Link
-              to="/create"
-              className="text-sm font-semibold leading-6 text-gray-900">
-                Create NFT
-              </Link>
-              <Link
-              to="/profile"
-              className="text-sm font-semibold leading-6 text-gray-900">
-                Profile
-              </Link>
+              {isAuthticated && (
+                <>
+                <Link
+                to="/create"
+                className="text-sm font-semibold leading-6 text-gray-900">
+                  Create NFT
+                </Link>
+                <Link
+                to="/profile"
+                className="text-sm font-semibold leading-6 text-gray-900">
+                  Profile
+                </Link>
+                </>
+              )}
+              
            
           </div>
 
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6">
-            <Link 
-            to="/login" 
-            className="text-sm font-semibold leading-6 text-gray-900">
-              Log in 
-            <span aria-hidden="true">&rarr;</span>
-            </Link>
-            <Link
-            to="/register" 
-            className="text-sm font-semibold leading-6 text-gray-900">
-              Sign up 
-            <span aria-hidden="true">&rarr;</span>
-            </Link>
-            <Link
-            to="/logout" 
-            className="text-sm font-semibold leading-6 text-gray-900">
-              Log out
-            <span aria-hidden="true">&rarr;</span>
-            </Link>
 
+            {isAuthticated 
+               ? (
+                <Link
+                to="/logout" 
+                className="text-sm font-semibold leading-6 text-gray-900">
+                  Log out
+                <span aria-hidden="true">&rarr;</span>
+                </Link>
+                )
+                : (
+                  <>
+                  <Link 
+                  to="/login" 
+                  className="text-sm font-semibold leading-6 text-gray-900">
+                  Log in 
+                  <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                  <Link
+                  to="/register" 
+                  className="text-sm font-semibold leading-6 text-gray-900">
+                  Sign up 
+                  <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                  </>
+                )
+            }
+            
           </div>
 
         </nav>
@@ -134,7 +155,10 @@ function Header() {
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                       Pricing
                     </Link>
-                    <Link
+
+                    {isAuthticated && (
+                      <>
+                      <Link
                       to="/create"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                       Create NFT
@@ -144,33 +168,44 @@ function Header() {
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                       Profile
                     </Link>
-                  
+                      </>
+                    )}
+                    
                 </div>
+                 
 
-                <div className="py-6">
-                  <Link
-                    to="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    Log in
-                  </Link>
-                </div>
-
-                <div className="py-6">
-                  <Link
-                    to="/register"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    Sign up
-                  </Link>
-                </div>
-
-                <div className="py-6">
-                  <Link
+                {isAuthticated
+                   ?(
+                   <div className="py-6">
+                   <Link
                     to="/logout"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                     Log out
-                  </Link>
-                </div>
+                   </Link>
+                   </div>
+                   )
+                   :(
+                    <>
+                    <div className="py-6">
+                    <Link
+                    to="/login"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    Log in
+                    </Link>
+                    </div>
 
+                   <div className="py-6">
+                   <Link
+                    to="/register"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    Sign up
+                   </Link>
+                   </div>
+
+                    </>
+                   )
+                }
+                
               </div>
             </div>
 
