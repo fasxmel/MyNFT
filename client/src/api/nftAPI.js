@@ -14,5 +14,9 @@ const getOneById = async(id) => {
   return data;
 };
 
+const create = async (nftData) => {
+  const data = await request.post(baseURL, nftData);
+  return nftData;
+};
 
-export default { getAll, getOneById }
+export default { getAll, getOneById, create };
