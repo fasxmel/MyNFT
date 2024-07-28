@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import { useState } from 'react';
 
 import { UserContext } from './context/userContext';
@@ -20,40 +20,22 @@ import Details from './components/details/Details';
 
 function App() {
   // TODO: remove from app component
-  const navigate = useNavigate();
   const [user, setUser] = useState({});
-
-
-  const onLoginSubmit = async (data) => {
-    try {
-      const result = await userApi.login(data);
-      // is it needed? or can we do it distructured the user object?
-      changeUserState(result);
-      navigate('/');
-    } catch (error) {
-      console.log(error.message);
-    }
-  
-  }
-  
   // control user state with context and setUser function
   // also we cant validate data here
   const changeUserState = (state) => {
+    // TODO: validate user data
     setUser(state); 
   }
-
 
   const contextData = {
     userId: user._id,
     email: user.email,
     accsessToken: user.accessToken,
     isAuthticated: !!user.email,
-    onLoginSubmit,
     changeUserState
   }
 
-
-  
 
   return (
     <UserContext.Provider value={{...contextData}}>

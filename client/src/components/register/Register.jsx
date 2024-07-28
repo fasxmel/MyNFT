@@ -1,62 +1,86 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-
-import { UserContext } from "../../context/userContext";
+import { useState } from "react";
 import { useForm } from "../../hooks/useFormF";
+import { useRegister } from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
- function Register (){
-    const { onRegisterSubmit } = useContext(UserContext);
-    const { values, changeHandler, onSubmit } = useForm({
-        email: '',
-        password: '',
-        confirmPassword: '',
-    }, onRegisterSubmit);
+const initialValues = {
+    email: '',
+    password: '',
+    rePassword: '',
+  }
 
-    return (
-        <section id="register" className="bg-gray-100 flex flex-grow items-center justify-center">
-            <form id="register" method="post" onSubmit={onSubmit}>
-                <div className="flex flex-col items-center justify-center gap-4">
-                   
-                    <h1>Register</h1>
+function Register() {
+    const [error, setError] = useState('');
+    const register = useRegister();
+    const navigate = useNavigate();
+    const registerhandler = async ({email, password, rePassword}) => {
 
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="maria@email.com"
-                        value={values.email}
-                        onChange={changeHandler}
-                    />
+     if (password !== rePassword) {
+       return setError('Passwords do not match');
+     }
 
-                    <label htmlFor="pass">Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="register-password"
-                        value={values.password}
-                        onChange={changeHandler}
-                    />
+     try {
+       await register(email, password)
+       navigate('/');
+     } catch (error) {
+       setError(error.message);
+     }
+ 
+    };
+   
+    const { 
+     values, 
+     changeHandler, 
+     submitHandler
+   } = useForm(initialValues, registerhandler);
+ 
+  return (
+    <div className ="relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-between py-4">
+   
+    <form id="register" onSubmit={submitHandler} className="flex flex-col items-center justify-center">
 
-                    <label htmlFor="con-pass">Confirm Password:</label>
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        id="confirm-password"
-                        value={values.confirmPassword}
-                        onChange={changeHandler}
-                    />
+     <label htmlFor="email">Email:</label>
+     <input 
+     id="email" 
+     type="email" 
+     name="email"
+     placeholder="email"
+     value={values.email}
+     onChange={changeHandler}
+     />
 
-                    <input className="btn submit" type="submit" value="Register" />
+     <label htmlFor="password">Password:</label>
+     <input 
+     id="password" 
+     type="password" 
+     name="password"
+     placeholder="password" 
+     value={values.password}
+     onChange={changeHandler}
+    
+     />
 
-                    <p className="field">
-                        <span>If you already have profile click <Link to="/login">here</Link></span>
-                    </p>
-                </div>
-            </form>
-        </section>
+     <label htmlFor="password">Confirm Password:</label>
+     <input 
+     id="rePassword" 
+     type="password" 
+     name="rePassword"
+     placeholder="confirm password" 
+     value={values.rePassword}
+     onChange={changeHandler}
+    
+     />
+     {error && (
+       <p className="text-red-500">{error}</p>
+     )}
 
-    );
-};
+     <input value="Register" type="submit" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100" />
 
-export default Register;
+    </form>
+  
+   </div>
+  )
+
+}
+
+export default Register;   

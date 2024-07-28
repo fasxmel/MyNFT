@@ -14,16 +14,19 @@ async function request(method, url, data) {
 }
 
    const response = await fetch(url, options);
+   const result = await response.json();
 
    if (!response.ok) {
-       throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+       throw result;
    }
+
 
    if (response.status === 204) {
        return response;
    }
+   
+   
 
-   const result = await response.json();
    return result;   
 }
 
