@@ -9,7 +9,6 @@ const initialValues = {
   price: ''
 }
 
-
 function Create() {
   const navigate = useNavigate();
   const createNft = useCreateNft();

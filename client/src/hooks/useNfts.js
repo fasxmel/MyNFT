@@ -37,7 +37,9 @@ export const useGetOneNftById = (nftId) => {
 }
 
 export const useCreateNft = () => {
+
   const nftCreateHandler = async (nftData) => await nftAPI.create(nftData);
+  
   return nftCreateHandler;
          
 }

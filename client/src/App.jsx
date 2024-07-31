@@ -24,7 +24,9 @@ function App() {
   // control user state with context and setUser function
   // also we cant validate data here
   const changeUserState = (state) => {
-    // TODO: validate user data
+    // TODO: validate user data and persist the state
+    localStorage.setItem('accessToken', state.accessToken);
+
     setUser(state); 
   }
 
@@ -33,12 +35,12 @@ function App() {
     email: user.email,
     accsessToken: user.accessToken,
     isAuthticated: !!user.email,
-    changeUserState
+    changeUserState,
   }
 
 
   return (
-    <UserContext.Provider value={{...contextData}}>
+    <UserContext.Provider value={contextData}>
     <div className="min-h-screen flex flex-col">
      
       <Header/> 
