@@ -1,10 +1,7 @@
 import './App.css'
 import { Routes, Route} from 'react-router-dom';
-import { useState } from 'react';
 
-import { UserContext } from './context/userContext';
-import * as userApi from './api/userAPI'
-
+import { UserContextProvider } from './context/userContext';
 
 import Header from './components/header/Header';
 import Hero from './components/hero/Hero';
@@ -19,31 +16,13 @@ import Details from './components/details/Details';
 
 
 function App() {
-  // TODO: remove from app component
-  const [user, setUser] = useState({});
-  // control user state with context and setUser function
-  // also we cant validate data here
-  const changeUserState = (state) => {
-    // TODO: validate user data and persist the state
-    localStorage.setItem('accessToken', state.accessToken);
-
-    setUser(state); 
-  }
-
-  const contextData = {
-    userId: user._id,
-    email: user.email,
-    accsessToken: user.accessToken,
-    isAuthticated: !!user.email,
-    changeUserState,
-  }
-
-
+  
   return (
-    <UserContext.Provider value={contextData}>
+   <UserContextProvider>
     <div className="min-h-screen flex flex-col">
      
       <Header/> 
+
       <Routes>
         <Route path='/' element={<Hero />} />
         <Route path='/catalog' element={<Catalog />} />
@@ -57,7 +36,7 @@ function App() {
       </Routes>
      
     </div>
-    </UserContext.Provider>
+   </UserContextProvider>
   )
 }
 
