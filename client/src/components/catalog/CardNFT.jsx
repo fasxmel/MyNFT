@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 function CardNFT({ 
   _id,
   title,
-  discription,
-  prize,
+  description,
+  price,
   imageUrl,
 }) {
   return (
@@ -21,11 +21,11 @@ function CardNFT({
       </h4>
       <p
         className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
-        {discription}
+        {description}
       </p>
       <p
         className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
-        {prize}
+        {price}
       </p>
      </div>
      
