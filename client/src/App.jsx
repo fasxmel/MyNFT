@@ -11,8 +11,8 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Create from './components/create/Create';
 import Profile from './components/profile/Profile';
-import Logout from './components/Logout';
 import Details from './components/details/Details';
+import Logout from './components/logout/Logout';
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
         <Route path='/details/:nftId' element={<Details />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/logout' element={<Logout />} />
+        <Route path='/logout' element={<Logout/>} />
       </Routes>
      
     </div>

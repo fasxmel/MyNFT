@@ -9,9 +9,8 @@ export const UserContextProvider = (props) => {
 
     
   const changeUserState = (state) => {
-    // TODO: validate user data and persist the state
+    
     localStorage.setItem('accessToken', state.accessToken);
-
     setUser(state); 
   }
 
