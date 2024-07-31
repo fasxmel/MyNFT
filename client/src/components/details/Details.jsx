@@ -36,11 +36,11 @@ function Details() {
        </h4>
        <p
         className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
-       {details.discription}
+       {details.description}
        </p>
        <p
        className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
-       {details.prize}
+       ${details.price}
        </p>
        </div>
 

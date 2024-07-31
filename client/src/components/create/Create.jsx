@@ -52,12 +52,12 @@ function Create() {
        onChange={changeHandler}
        ></textarea>
 
-       <label htmlFor="img">Image:</label>
+       <label htmlFor="imageUrl">Image:</label>
        <input 
        type="text" 
-       name="img" 
-       id="img" 
-       value={values.img}
+       name="imageUrl" 
+       id="imageUrl" 
+       value={values.image}
        onChange={changeHandler}
        />
 
@@ -70,7 +70,7 @@ function Create() {
        onChange={changeHandler}
        />
 
-       <button type="submit">Create</button>
+       <button type="submit" value="submit">Create</button>
     </form>
 
   </div>
