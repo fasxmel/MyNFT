@@ -45,7 +45,7 @@ function Details() {
        </div>
 
        <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7">
-        <div className="flex flex-1 items-center justify-center gap-10">
+        <div className="flex flex-1 items-start justify-start gap-2">
           <h2>Comments:</h2>
             <ul>
               {details.comments && Object.values(details.comments).map((comment) => (
@@ -58,33 +58,22 @@ function Details() {
             </ul>
         </div>
 
-        <div className="flex flex-1 items-center justify-center gap-10">
-        <Link to="#"
-         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
-         >
-         Edit
-         </Link>
-         <Link to={`/details/${nftId}/comments`}
-         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
-         >
-        Delete
-         </Link>
-        </div>
-
        </div>
 
        <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7">
              <label>Add new comment:</label>
              <form onSubmit={commentOnSubmitHandler}>
-                <input 
+                <input
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0 mb-2" 
                 type="text" 
-                placeholder="(Pesho)" 
+                placeholder="Username"
                 name="username"
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
                 />
                 
                 <textarea 
+                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0"
                 name="comment" 
                 placeholder="Comment........"
                 onChange={(e) => setComment(e.target.value)}
@@ -92,10 +81,10 @@ function Details() {
                 >  
                 </textarea>
 
-                <input className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0" type="submit" value="Add Comment" />
+                <input className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0 mt-2" type="submit" value="Add Comment" />
              </form>
        </div>
-
+       {/* TODO: add conditional rendering for oners */}
       <div className="flex justify-center p-6 pt-2 gap-7">
        <Link to="/catalog"
         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
@@ -110,10 +99,23 @@ function Details() {
  
       </div>
 
+      <div className="flex flex-1 items-center justify-center gap-10">
+        <Link to="#"
+         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+         >
+         Edit
+         </Link>
+         <Link to={`/details/${nftId}/comments`}
+         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+         >
+        Delete
+         </Link>
+      </div>
+
       </div>
    
      </div>
   )
 }
 
-export default Details
+export default Details;

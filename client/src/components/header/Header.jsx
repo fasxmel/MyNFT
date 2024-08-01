@@ -6,7 +6,7 @@ import { UserContext } from '../../context/userContext'
 
 function Header() {
   const { isAuthticated, email} = useContext(UserContext);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [ mobileMenuOpen, setMobileMenuOpen ] = useState(false)
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
