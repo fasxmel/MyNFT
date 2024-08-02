@@ -1,25 +1,31 @@
 import { useParams, Link } from 'react-router-dom';
-import { useState } from 'react';
-import commentsAPI from '../../api/commentsAPI';
 import { useGetOneNftById } from '../../hooks/useNfts';
+import { useForm } from '../../hooks/useFormF';
+import { useCreateComments, useGetAllComments } from '../../hooks/useComments';
+import { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 
+
+
+const initialValues = {
+  comment: '',
+}
 
 function Details() {
   const { nftId } = useParams();
-  const [details, setDetails] = useGetOneNftById(nftId);
-  const [username, setUsername] = useState('');
-  const [comment, setComment] = useState('');
-
-
-  const commentOnSubmitHandler = async (e) => {
-    e.preventDefault();
-   
-    const newComment = await commentsAPI.create(nftId, username, comment);
-    // we need to refactor this
-    console.log(username);
-    console.log(comment);
-    console.log('comment submitted');
-  }
+  const [comments, setComments] = useGetAllComments(nftId);
+  const createComment = useCreateComments();
+  const [details] = useGetOneNftById(nftId);
+  const {isAuthticated} = useContext(UserContext);
+  
+  const {values, 
+         changeHandler, 
+         submitHandler
+  } = useForm(initialValues, ({comment}) => {
+    console.log(values);
+    createComment(nftId, comment);
+    
+  });
 
  return (
      <div className='relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-center text-center py-4 sm:px-6 lg:px-8'>
@@ -45,45 +51,46 @@ function Details() {
        </div>
 
        <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7">
-        <div className="flex flex-1 items-start justify-start gap-2">
-          <h2>Comments:</h2>
-            <ul>
-              {details.comments && Object.values(details.comments).map((comment) => (
-                <li
-                key={comment._id}
-                className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
-                <p>Content:{comment.username}: {comment.text}</p>
-                </li>
-              ))}
-            </ul>
+         <div className="flex flex-1 items-center justify-center gap-2">
+           <h2 className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400 ml-8">Comments:</h2>
+             <ul>
+               {comments.map((comment) => (
+                 <li
+                 key={comment._id}>
+                 <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7 mr-8">
+                 <p>Username: {comment.username}</p> 
+                 <p>Comment: {comment.text}</p>
+                 </div>
+                 </li>
+               ))}
+             </ul>
+             {comments.length === 0 && (
+               <p className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400 ml-8">No comments yet</p>
+             )}
+         </div>
+ 
         </div>
 
+      {isAuthticated && (
+       
+        <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7">
+              <label>Add new comment:</label>
+              <form onSubmit={submitHandler}>
+               
+                 <textarea 
+                 className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0"
+                 name="comment" 
+                 placeholder="Comment........"
+                 onChange={changeHandler}
+                 value={values.comment}
+                 >  
+                 </textarea>
+ 
+                 <input className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0 mt-2" type="submit" value="Add Comment" />
+              </form>
        </div>
-
-       <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7">
-             <label>Add new comment:</label>
-             <form onSubmit={commentOnSubmitHandler}>
-                <input
-                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0 mb-2" 
-                type="text" 
-                placeholder="Username"
-                name="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-                />
-                
-                <textarea 
-                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0"
-                name="comment" 
-                placeholder="Comment........"
-                onChange={(e) => setComment(e.target.value)}
-                value={comment}
-                >  
-                </textarea>
-
-                <input className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100 ml-0 mt-2" type="submit" value="Add Comment" />
-             </form>
-       </div>
+      )}
+      
        {/* TODO: add conditional rendering for oners */}
       <div className="flex justify-center p-6 pt-2 gap-7">
        <Link to="/catalog"
