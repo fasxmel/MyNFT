@@ -13,7 +13,7 @@ const initialValues = {
 
 function Details() {
   const { nftId } = useParams();
-  const [comments, setComments] = useGetAllComments(nftId);
+  const [ comments, setComments ] = useGetAllComments(nftId);
   const createComment = useCreateComments();
   const [details] = useGetOneNftById(nftId);
   const {isAuthticated} = useContext(UserContext);
@@ -22,9 +22,15 @@ function Details() {
          changeHandler, 
          submitHandler
   } = useForm(initialValues, ({comment}) => {
-    console.log(values);
-    createComment(nftId, comment);
+     try {
+        const newComment = createComment(nftId, comment);
+        setComments(prev => [...prev, newComment]);
+      
+     } catch (error) {
+       console.log(error.message);
+     }
     
+   
   });
 
  return (
@@ -54,12 +60,11 @@ function Details() {
          <div className="flex flex-1 items-center justify-center gap-2">
            <h2 className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400 ml-8">Comments:</h2>
              <ul>
-               {comments.map((comment) => (
+               {comments?.map((comment) => (
                  <li
                  key={comment._id}>
                  <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7 mr-8">
-                 <p>Username: {comment.username}</p> 
-                 <p>Comment: {comment.text}</p>
+                 <p>Username:{comment.text}</p>
                  </div>
                  </li>
                ))}

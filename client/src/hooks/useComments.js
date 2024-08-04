@@ -4,10 +4,10 @@ import commentsAPI from "../api/commentsAPI";
 
 export const useCreateComments = () => {
 
-    const createComment = (nftId, comment) => {
-        commentsAPI.create(nftId, comment);
-    }
+    const createComment = (nftId, comment) => commentsAPI.create(nftId, comment);
+
     return createComment;
+ 
 }
 
 export const useGetAllComments = (nftId) => {
@@ -16,7 +16,7 @@ export const useGetAllComments = (nftId) => {
     useEffect(() => {
         (async () => {
             const allComments = await commentsAPI.getAll(nftId);
-            console.log(allComments);
+           
             setComments(allComments);
         })();
     }, [nftId]);
