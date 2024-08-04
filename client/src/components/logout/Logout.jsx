@@ -2,12 +2,11 @@ import { Navigate } from "react-router-dom";
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../context/userContext';
 function Logout() {
-const { changeUserState } = useContext(UserContext);
+const { logout } = useContext(UserContext);
 
-useEffect(() => {
-    localStorage.removeItem('accessToken');
-    changeUserState({});
-}, [changeUserState]);
+useEffect(() => { 
+    logout();
+}, []);
 
 return <Navigate to="/" />   
 }

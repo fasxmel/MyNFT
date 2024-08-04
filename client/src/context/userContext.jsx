@@ -9,9 +9,13 @@ export const UserContextProvider = (props) => {
 
     
   const changeUserState = (state) => {
-    
     localStorage.setItem('accessToken', state.accessToken);
     setUser(state); 
+  }
+
+  const logout = () => {
+    localStorage.removeItem('accessToken');
+    setUser({});
   }
 
 
@@ -21,6 +25,7 @@ export const UserContextProvider = (props) => {
     accsessToken: user.accessToken,
     isAuthticated: !!user.email,
     changeUserState,
+    logout,
   }
 
 

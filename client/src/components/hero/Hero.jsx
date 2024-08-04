@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import nftApi from "../../api/nftAPI";
 import CustomSpinner from "../CustomSpinner";
 
-function Hero() {
 
+function Hero() {
   const [nftLatest, setNftLatest] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const nfts = await nftApi.getAll();
+      const latestNft = await nftApi.getAll();
 
-      setNftLatest(nfts.reverse().slice(0, 4));
+      setNftLatest(latestNft.reverse().slice(0, 4));
     })();
 
   } , []);

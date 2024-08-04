@@ -5,9 +5,12 @@ async function request(method, url, data) {
 
     if (accessToken) {
         options.headers = {
+            ...options.headers,
             'X-Authorization': accessToken,
         };
-    }
+   
+    } 
+
     
     if (method !== 'GET') {
         options.method = method;
