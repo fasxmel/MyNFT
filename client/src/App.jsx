@@ -5,7 +5,6 @@ import { UserContextProvider } from './context/userContext';
 
 import Header from './components/header/Header';
 import Hero from './components/hero/Hero';
-import Pricing from './components/pricing/Pricing';
 import Catalog from './components/catalog/Catalog';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
@@ -13,6 +12,7 @@ import Create from './components/create/Create';
 import Profile from './components/profile/Profile';
 import Details from './components/details/Details';
 import Logout from './components/logout/Logout';
+import Edit from './components/edit/Edit';
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Hero />} />
         <Route path='/catalog' element={<Catalog />} />
-        <Route path='/pricing' element={<Pricing />} />
+        <Route path='/edit/:nftId' element={<Edit />} />
         <Route path='/create' element={<Create />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/details/:nftId' element={<Details />} />

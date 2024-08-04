@@ -21,7 +21,12 @@ export const useGetAllNfts = () => {
 }
 
 export const useGetOneNftById = (nftId) => {
-  const [details, setDetails] = useState({});
+  const [details, setDetails] = useState({
+    title: '',
+    description: '',
+    imageUrl: '',
+    price: ''
+  });
 
     useEffect(() => {
         (async () => {
@@ -41,5 +46,12 @@ export const useCreateNft = () => {
   const nftCreateHandler = async (nftData) => await nftAPI.create(nftData);
   
   return nftCreateHandler;
+         
+}
+
+export const useDeleteNft = () => {
+  const nftDeleteHandler = async (nftId) => await nftAPI.delete(nftId);
+  
+  return nftDeleteHandler;
          
 }

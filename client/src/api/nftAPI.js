@@ -9,9 +9,10 @@ const getAll = async () => {
 
 const getOneById = async (nftId) => request.get(`${baseURL}/${nftId}`);
 
-
 const create = (nftData) =>  request.post(`${baseURL}`, nftData);
+
+const deleteById = async (nftId) => request.del(`${baseURL}/${nftId}`);
  
+const edit = async (nftId, nftData) => request.put(`${baseURL}/${nftId}`, nftData);
 
-
-export default { getAll, getOneById, create };
+export default { getAll, getOneById, create, deleteById, edit };

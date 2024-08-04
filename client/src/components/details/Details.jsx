@@ -1,9 +1,10 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useGetOneNftById } from '../../hooks/useNfts';
 import { useForm } from '../../hooks/useFormF';
 import { useCreateComments, useGetAllComments } from '../../hooks/useComments';
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
+import nftAPI from '../../api/nftAPI';
 
 
 
@@ -13,6 +14,7 @@ const initialValues = {
 
 function Details() {
   const { nftId } = useParams();
+  const navigate = useNavigate();
   const [ comments, setComments ] = useGetAllComments(nftId);
   const createComment = useCreateComments();
   const [details] = useGetOneNftById(nftId);
@@ -34,6 +36,23 @@ function Details() {
   });
 
   const isOwner = userId === details._ownerId;
+
+  const nftDeleteHandler = async () => {
+    // TODO: Add costom Componet for confirmation
+    const isConfirm = confirm(`Are you sure you want to delete this ${details.title} NFT?`);
+
+    if (!isConfirm) {
+      return;
+    }
+
+    try {
+      await nftAPI.deleteById(nftId);
+      navigate('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+     
+  }
 
  return (
      <div className='relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-center text-center py-4 sm:px-6 lg:px-8'>
@@ -100,18 +119,21 @@ function Details() {
       
        {isOwner && (
          <div className="flex flex-1 items-center justify-center gap-10">
-         <Link to="#"
+         <Link to={`/edit/${nftId}`}
           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
           >
-          Edit
+             Edit
           </Link>
-          <Link to={`/details/${nftId}/comments`}
+          <Link to="#"
           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+          onClick={nftDeleteHandler}
           >
-         Delete
+             Delete
           </Link>
        </div>
        )}
+
+
       <div className="flex justify-center p-6 pt-2 gap-7">
        <Link to="/catalog"
         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
