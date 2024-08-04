@@ -60,7 +60,7 @@ function Details() {
          <div className="flex flex-1 items-center justify-center gap-2">
            <h2 className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400 ml-8">Comments:</h2>
              <ul>
-               {comments?.map((comment) => (
+               {comments.map((comment) => (
                  <li
                  key={comment._id}>
                  <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7 mr-8">

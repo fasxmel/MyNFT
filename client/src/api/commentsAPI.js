@@ -5,9 +5,14 @@ const baseUrl = "http://localhost:3030/data/comments";
 const create = (nftId, text) => request.post(baseUrl, {nftId, text});
 
 const getAll = (nftId) => {
-    const result = request.get(baseUrl + `?where=nftId%3D%22${nftId}%22&sortBy=_createdOn%20desc`);
+    const params = new URLSearchParams({
+        where: `nftId="${nftId}"`,
+        load: `author=_ownerId:users`
+    });
+
+    // const result = request.get(baseUrl + `?where=nftId%3D%22${nftId}%22&sortBy=_createdOn%20desc`);
    
-    return result;
+    return request.get(baseUrl + `?${params.toString()}`);
 }
 
 
