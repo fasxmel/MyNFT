@@ -1,7 +1,14 @@
 import { Navigate } from "react-router-dom";
-
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../../context/userContext';
 function Logout() {
-localStorage.removeItem('accessToken');    
+const { changeUserState } = useContext(UserContext);
+
+useEffect(() => {
+    localStorage.removeItem('accessToken');
+    changeUserState({});
+}, [changeUserState]);
+
 return <Navigate to="/" />   
 }
 
