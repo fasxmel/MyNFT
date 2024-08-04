@@ -16,7 +16,7 @@ function Details() {
   const [ comments, setComments ] = useGetAllComments(nftId);
   const createComment = useCreateComments();
   const [details] = useGetOneNftById(nftId);
-  const {isAuthticated} = useContext(UserContext);
+  const {isAuthticated, email, userId} = useContext(UserContext);
   
   const {values, 
          changeHandler, 
@@ -24,7 +24,7 @@ function Details() {
   } = useForm(initialValues, ({comment}) => {
      try {
         const newComment = createComment(nftId, comment);
-        setComments(prev => [...prev, newComment]);
+        setComments(prev => [...prev, {...newComment, author: email, _id: userId}]);
       
      } catch (error) {
        console.log(error.message);
@@ -32,6 +32,8 @@ function Details() {
     
    
   });
+
+  const isOwner = userId === details._ownerId;
 
  return (
      <div className='relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-center text-center py-4 sm:px-6 lg:px-8'>
@@ -96,7 +98,20 @@ function Details() {
        </div>
       )}
       
-       {/* TODO: add conditional rendering for oners */}
+       {isOwner && (
+         <div className="flex flex-1 items-center justify-center gap-10">
+         <Link to="#"
+          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+          >
+          Edit
+          </Link>
+          <Link to={`/details/${nftId}/comments`}
+          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
+          >
+         Delete
+          </Link>
+       </div>
+       )}
       <div className="flex justify-center p-6 pt-2 gap-7">
        <Link to="/catalog"
         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
@@ -111,18 +126,7 @@ function Details() {
  
       </div>
 
-      <div className="flex flex-1 items-center justify-center gap-10">
-        <Link to="#"
-         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
-         >
-         Edit
-         </Link>
-         <Link to={`/details/${nftId}/comments`}
-         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"
-         >
-        Delete
-         </Link>
-      </div>
+      
 
       </div>
    
