@@ -64,7 +64,7 @@ function Details() {
                  <li
                  key={comment._id}>
                  <div className="border-2 border-violet-300 flex items-center justify-center text-center p-6 pt-2 m-4 gap-7 mr-8">
-                 <p>Username:{comment.text}</p>
+                 <p>{comment.author.email}: {comment.text}</p>
                  </div>
                  </li>
                ))}

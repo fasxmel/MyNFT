@@ -10,9 +10,7 @@ const getAll = (nftId) => {
         load: `author=_ownerId:users`
     });
 
-    // const result = request.get(baseUrl + `?where=nftId%3D%22${nftId}%22&sortBy=_createdOn%20desc`);
-   
-    return request.get(baseUrl + `?${params.toString()}`);
+return request.get(baseUrl + `?${params.toString()}`);
 }
 
 
