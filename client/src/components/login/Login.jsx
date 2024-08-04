@@ -1,6 +1,7 @@
 import { useForm } from "../../hooks/useFormF";
 import { useLogin } from "../../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 
 const initialValues = {
@@ -10,14 +11,21 @@ const initialValues = {
 
 
 function Login() {
+  const [error, setError] = useState('');
    const login = useLogin();
    const navigate = useNavigate();
    const loginHandler = async ({email, password}) => {
+
+    if (!email || !password) {
+      return setError('All fields are required!');
+    }
+    
+
     try {
       await login(email, password)
       navigate('/');
     } catch (error) {
-      console.log(error.message);
+      setError(error.message);
     }
 
    };
@@ -52,6 +60,8 @@ function Login() {
       value={values.password}
       onChange={changeHandler}
       />
+
+      {error && <p className="text-red-500">{error} </p>}
 
       <input type="submit" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100" value="Login" />
      </form>
