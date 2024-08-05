@@ -3,12 +3,6 @@ import { useForm } from "../../hooks/useFormF";
 import { useGetOneNftById } from "../../hooks/useNfts";
 import nftAPI from "../../api/nftAPI";
 
-// const initialValues = {
-//   title: '',
-//   description: '',
-//   imageUrl: '',
-//   price: ''
-// }
 
 function Edit() {
   const { nftId } = useParams();

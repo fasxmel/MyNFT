@@ -117,7 +117,7 @@ function Details() {
        </div>
       )}
       
-       {isOwner && (
+       {isAuthticated && isOwner && (
          <div className="flex flex-1 items-center justify-center gap-10">
          <Link to={`/edit/${nftId}`}
           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100"

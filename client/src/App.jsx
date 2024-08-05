@@ -13,6 +13,9 @@ import Profile from './components/profile/Profile';
 import Details from './components/details/Details';
 import Logout from './components/logout/Logout';
 import Edit from './components/edit/Edit';
+import RouteGuard from './components/common/RouteGuard';
+import NotFound from './components/404/NotFound';
+
 
 
 function App() {
@@ -26,13 +29,20 @@ function App() {
       <Routes>
         <Route path='/' element={<Hero />} />
         <Route path='/catalog' element={<Catalog />} />
-        <Route path='/edit/:nftId' element={<Edit />} />
-        <Route path='/create' element={<Create />} />
-        <Route path='/profile' element={<Profile />} />
+        
+        <Route element={<RouteGuard/>} >
+          <Route path='/create' element={<Create />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/edit/:nftId' element={<Edit />} />
+        </Route>
+
+        
         <Route path='/details/:nftId' element={<Details />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/logout' element={<Logout/>} />
+        <Route path='*' element={<NotFound/>} />
+
       </Routes>
      
     </div>
