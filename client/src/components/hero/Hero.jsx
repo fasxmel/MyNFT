@@ -32,13 +32,13 @@ function Hero() {
             <p className="mt-2 text-lg leading-8 text-gray-800">
             Your Gateway to the Digital Art Revolution!
             </p>
-            {/* TODO: condishionally render if user is logged in */}
+            
             <div className="mt-2 flexitems-center justify-center">
               <Link
                 to="/catalog"
                 className="rounded-md bg-indigo-400 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-yellow-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200"
               >
-                Buy NFTs
+                Explore NFTs
 
               </Link>
               { isAuthticated && (

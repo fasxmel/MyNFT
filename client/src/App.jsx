@@ -9,7 +9,6 @@ import Catalog from './components/catalog/Catalog';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Create from './components/create/Create';
-import Profile from './components/profile/Profile';
 import Details from './components/details/Details';
 import Logout from './components/logout/Logout';
 import Edit from './components/edit/Edit';
@@ -33,7 +32,6 @@ function App() {
         
         <Route element={<RouteGuard/>} >
           <Route path='/create' element={<Create />} />
-          <Route path='/profile' element={<Profile />} />
           <Route path='/logout' element={<Logout/>} />
         </Route>
 
