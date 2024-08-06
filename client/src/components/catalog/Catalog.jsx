@@ -14,6 +14,7 @@ const [nft, setNft] = useGetAllNfts();
         <div className="flex-1 justify-center items-center text-center">
         <h1 className="text-4xl font-bold mt-28">All NFTs</h1>
         </div>
+        
         <div className="flex flex-wrap gap-2 justify-center items-center mt-12">  
          {nft.length > 0 
               ? nft.map((nft) => (

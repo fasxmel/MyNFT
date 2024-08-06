@@ -2,11 +2,13 @@ import CardNFT from "../catalog/CardNFT";
 import { useEffect, useState } from "react";
 import nftApi from "../../api/nftAPI";
 import CustomSpinner from "../CustomSpinner";
-
+import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 
 function Hero() {
   const [nftLatest, setNftLatest] = useState([]);
-
+  const { isAuthticated } = useContext(UserContext);
   useEffect(() => {
     (async () => {
       const latestNft = await nftApi.getAll();
@@ -32,15 +34,18 @@ function Hero() {
             </p>
             {/* TODO: condishionally render if user is logged in */}
             <div className="mt-2 flexitems-center justify-center">
-              <a
-                href="#"
+              <Link
+                to="/catalog"
                 className="rounded-md bg-indigo-400 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-yellow-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200"
               >
                 Buy NFTs
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 p-4 text-gray-900">
+
+              </Link>
+              { isAuthticated && (
+                <Link to="/create" className="text-sm font-semibold leading-6 p-4 text-gray-900">
                 Create NFTs <span aria-hidden="true">→</span>
-              </a>
+              </Link>
+              )}
             </div>
 
           

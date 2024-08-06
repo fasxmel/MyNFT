@@ -18,6 +18,7 @@ import NotFound from './components/404/NotFound';
 
 
 
+
 function App() {
   
   return (
@@ -33,14 +34,13 @@ function App() {
         <Route element={<RouteGuard/>} >
           <Route path='/create' element={<Create />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/edit/:nftId' element={<Edit />} />
+          <Route path='/logout' element={<Logout/>} />
         </Route>
 
-        
+        <Route path='/edit/:nftId' element={<Edit />} />
         <Route path='/details/:nftId' element={<Details />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/logout' element={<Logout/>} />
         <Route path='*' element={<NotFound/>} />
 
       </Routes>
