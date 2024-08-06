@@ -9,9 +9,12 @@ const [nft, setNft] = useGetAllNfts();
 
     return (
 
-      <div className="relative flex flex-grow overflow-hidden bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-center text-center  py-4 gap-6">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gradient-to-r from-indigo-200 to-yellow-100">
+
+        <div className="flex-1 justify-center items-center text-center">
         <h1 className="text-4xl font-bold mt-28">All NFTs</h1>
-        <div className="flex flex-grow flex-row flex-wrap gap-8 justify-center mt-36">  
+        </div>
+        <div className="flex flex-wrap gap-2 justify-center items-center mt-12">  
          {nft.length > 0 
               ? nft.map((nft) => (
               <CardNFT key={nft._id} {...nft}/>
@@ -22,6 +25,7 @@ const [nft, setNft] = useGetAllNfts();
                </div>
               }
         </div>
+
       </div>
      
     )

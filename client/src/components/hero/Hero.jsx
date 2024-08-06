@@ -17,11 +17,10 @@ function Hero() {
   } , []);
   
   return (
-      <div className="relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-between py-4">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gradient-to-r from-indigo-200 to-yellow-100">
 
-        <div className="md:flex flex-row text-center  sm:flex-auto items-start justify-center mt-28 gap-8">
-         
-          <div className="lg:flex-initial justify-start items-start">
+       
+          <div className="flex-1 justify-center items-center text-center">
 
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mt-12">
             Create Buy and Sell Unique NFTs
@@ -45,9 +44,9 @@ function Hero() {
             </div>
 
           
-            </div>
+          </div>
            
-           <div className="flex flex-grow flex-row flex-wrap gap-8 justify-center mt-12">  
+           <div className="flex flex-wrap gap-2 justify-center items-center mt-12">  
               {nftLatest.length > 0 
               ? nftLatest.map((nft) => (
               <CardNFT key={nft._id} {...nft}/>
@@ -58,8 +57,6 @@ function Hero() {
                </div>
               }
            </div>
-
-        </div>
 
       </div>
   )

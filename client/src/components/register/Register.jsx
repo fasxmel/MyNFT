@@ -36,9 +36,7 @@ function Register() {
  
   return (
 
-    <>
-
-<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gradient-to-r from-indigo-200 to-yellow-100">
+     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gradient-to-r from-indigo-200 to-yellow-100">
 
          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -140,61 +138,8 @@ function Register() {
           </p>
          </div>
 
-      </div>
+     </div>
 
-
-
-
-
-
-
-    {/* <div className ="relative flex flex-grow bg-gradient-to-r from-indigo-200 to-yellow-100 px-8 items-center justify-between py-4">
-   
-     <form id="register" onSubmit={submitHandler} className="flex flex-col items-center justify-center">
-
-      <label htmlFor="email">Email:</label>
-     <input 
-     id="email" 
-     type="email" 
-     name="email"
-     placeholder="email"
-     value={values.email}
-     onChange={changeHandler}
-     />
-
-     <label htmlFor="password">Password:</label>
-     <input 
-     id="password" 
-     type="password" 
-     name="password"
-     placeholder="password" 
-     value={values.password}
-     onChange={changeHandler}
-    
-     />
-
-     <label htmlFor="password">Confirm Password:</label>
-     <input 
-     id="rePassword" 
-     type="password" 
-     name="rePassword"
-     placeholder="confirm password" 
-     value={values.rePassword}
-     onChange={changeHandler}
-    
-     />
-     {error && (
-       <p className="text-red-500">{error}</p>
-     )}
-
-     <input value="Register" type="submit" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 bg-violet-300 text-gray-900 hover:bg-yellow-100" />
-
-      </form> 
-  
-     </div>  */}
-
-
-    </>
   )
 
 }
