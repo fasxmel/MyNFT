@@ -1,8 +1,46 @@
-# React + Vite
+# MyNFT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project consists of a server backend built with Node.js and an accompanying client application developed using React and Vite.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
+
+.
+├── client
+│ ├── public
+│ ├── src
+│ │ ├── api
+│ │ ├── components
+│ │ ├── context
+│ │ ├── hooks
+│ │ ├── App.css
+│ │ ├── App.jsx
+│ │ └── main.jsx
+│ ├── eslinttrc.cjs
+│ ├── gitignore
+│ ├── index.html
+│ ├── package-lock.json
+│ ├── package.json
+│ ├── postcss.config.js
+│ ├── RADME.md
+│ ├── tailwind.config.js
+│ └── vite.config.js
+├── server
+│ ├── src
+│ │ ├── data
+│ │ └── server.js
+├── .gitignore
+└── README.md
+
+
+## Requirements
+- **Node.js** (v14 or higher)
+- **npm** (v6 or higher) or **yarn** (v1.22 or higher)
+
+# Install and run client application using Vite
+cd client
+npm run dev
+
+# Install and run backend server 
+cd server
+node server.js
