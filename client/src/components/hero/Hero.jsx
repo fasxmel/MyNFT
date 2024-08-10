@@ -1,7 +1,7 @@
 import CardNFT from "../catalog/CardNFT";
 import { useEffect, useState } from "react";
 import nftApi from "../../api/nftAPI";
-import CustomSpinner from "../CustomSpinner";
+import CustomSpinner from "../common/CustomSpinner";
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';

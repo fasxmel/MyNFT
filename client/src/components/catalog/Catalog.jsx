@@ -1,6 +1,6 @@
 
 import { useGetAllNfts } from "../../hooks/useNfts";
-import CustomSpinner from "../CustomSpinner";
+import CustomSpinner from "../common/CustomSpinner";
 import CardNFT from "./CardNFT";
 
 function Catalog() {
