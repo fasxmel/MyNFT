@@ -1343,42 +1343,42 @@
                 "9d8fdfc4-08ee-45c9-ada4-197025715280": {
                     "title": "penguin",
                     "description": "penguin pilot",
-                    "price": "200$",
+                    "price": "200",
                     "imageUrl": "/penguin.jpg",
                     "_id": "9d8fdfc4-https://twitter.com/mattsheffield/status/160364623412398489608ee-45c9-ada4-197025715280"
                 },
                 "e0890c40-030b-4612-9b49-b791b7f5adf8": {
                     "title": "galery",
                     "description": "punk galery",
-                    "price": "69$",
+                    "price": "69",
                     "imageUrl": "/galery.jpg",
                     "_id": "e0890c40-030b-4612-9b49-b791b7f5adf8"
                 },
                 "c29d48c8-84a2-4852-8828-f97afa9d7e74": {
                     "title": "mask",
                     "description": "mask on",
-                    "price": "1000$",
+                    "price": "1000",
                     "imageUrl": "/mask.jpg",
                     "_id": "c29d48c8-84a2-4852-8828-f97afa9d7e74"
                 },
                 "87a625c7-8835-4459-92ea-439a7480fb4c": {
                     "title": "pilot",
                     "description": "pilot tinkig",
-                    "price": "59$",
+                    "price": "59",
                     "imageUrl": "/pilot.jpg",
                     "_id": "87a625c7-8835-4459-92ea-439a7480fb4c"
                 },
                 "ba4b71ce-e6db-483b-8dc1-3a0cebeda410": {
                     "title": "punk",
                     "description": "punk on",
-                    "price": "456$",
+                    "price": "456",
                     "imageUrl": "/punk.jpg",
                     "_id": "ba4b71ce-e6db-483b-8dc1-3a0cebeda410"
                 },
                 "3d07b41a-0000-4488-a763-35200aee84ac": {
                     "title": "stevejobs",
                     "description": "Steve Jobs live",
-                    "price": "3050$",
+                    "price": "3050",
                     "imageUrl": "/stevejobs.jpg",
                     "_id": "3d07b41a-0000-4488-a763-35200aee84ac"
                 }

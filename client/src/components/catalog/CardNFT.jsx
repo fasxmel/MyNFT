@@ -25,7 +25,7 @@ function CardNFT({
       </p>
       <p
         className="block font-sans text-base antialiased font-medium leading-relaxed  blue-gray-400">
-        {price}
+        {price}$
       </p>
      </div>
      
